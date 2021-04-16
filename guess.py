@@ -3,7 +3,7 @@
 """
 Sets up the game
 """
-
+import logging
 import random
 
 
@@ -14,42 +14,35 @@ class Guess:
 
     guessed: bool = False
 
-    def define_guess(self, guess: int) -> bool:
+    def define_guess(self, guess_input: str) -> bool:
         """
         Define the guess
-        :param guess the number input
+        :param guess_input s the number input
         :return: True if the guess is close to generated
         random number, false otherwise
         """
         number = random.randint(0, 350)
-        guess_counter = 0
+        guess = int(guess_input)
 
-        while guess_counter < 6:
-            guess_counter = guess_counter + 1
-            if guess < number or guess > number:
-                self.guessed = False
-            else:
-                self.guessed = True
-                break
+        if guess != number:
+            print("You guessed wrong.")
+            self.guessed = False
+        else:
+            print("You guessed correctly.")
+            self.guessed = True
         return bool(self.guessed)
 
-    def display_message(self, guess: int) -> str:
-        """
-        Displays a message regarding the game
-        output
-        :param guess
-        :return: logging message
-        """
-        result = self.define_guess(guess)
-        if result:
-            return "You guessed right."
-        else:
-            return "You guessed wrong."
-
-    def play_guess_game(self, guess: int):
+    def play_guess_game(self):
         """
         The play guess method
-        param: guess
         :return:
         """
-        print(self.display_message(guess))
+        guess = input("Enter a number between 0 and 350.")
+        self.define_guess(guess)
+
+        try_again = input("Do you want to try again? Answer with Yes or No.")
+
+        if "Yes" in try_again:
+            self.play_guess_game()
+        else:
+            print("Thanks for playing. Have a nice day! 😄")
