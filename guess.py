@@ -17,7 +17,7 @@ class Guess:
     def define_guess(self, guess_input: str) -> bool:
         """
         Define the guess
-        :param guess_input s the number input
+        :param guess_input the number input
         :return: True if the guess is close to generated
         random number, false otherwise
         """
