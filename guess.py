@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Sets up the game
+Sets up the guessing game
 """
-import logging
 import random
 
 
